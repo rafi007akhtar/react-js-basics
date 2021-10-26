@@ -37,3 +37,24 @@ ReactDOM.render(
 	document.querySelector('#root')
 );
 /** Introducing JSX - end */
+
+/** Rendering Elements - begin */
+
+/** Create an element that says hello world and shows the time, and render it to the DOM every second */
+function tick() {
+	const element = (
+		<div>
+			<h1>Hello, World!</h1>
+			<h2>It is {new Date().toLocaleTimeString()} right now.</h2>
+		</div>
+	);
+	ReactDOM.render(element, document.querySelector('#root'));
+	// the above line will create the element and render it
+	// once the element is created, it cannot be changed - elements are immutable in React
+	// so to update it, the only way is to create a new element, and rerender it in the same location, like below.
+
+	setInterval(tick, 1000);
+}
+
+tick();
+/** Rendering Elements - end */
