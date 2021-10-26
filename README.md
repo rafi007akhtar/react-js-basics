@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This repository basically contains the code I followed along with while learning ReactJS from its [online guide](https://reactjs.org/docs/hello-world.html). Currently, it contains only the first 6 chapters out of 12. Unsure if I will continue any time soon.
+
 ## Available Scripts
 
 In the project directory, you can run:
