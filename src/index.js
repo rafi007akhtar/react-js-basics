@@ -40,7 +40,7 @@ ReactDOM.render(
 
 /** Rendering Elements - begin */
 
-/** Create an element that says hello world and shows the time, and render it to the DOM every second */
+/** Create an element that says hello world and shows the time, and render it to the DOM */
 function tick() {
 	const element = (
 		<div>
@@ -51,10 +51,8 @@ function tick() {
 	ReactDOM.render(element, document.querySelector('#root'));
 	// the above line will create the element and render it
 	// once the element is created, it cannot be changed - elements are immutable in React
-	// so to update it, the only way is to create a new element, and rerender it in the same location, like below.
-
-	setInterval(tick, 1000);
+	// so to update it, the only way is to create a new element, and rerender it in the same location, like below.	
 }
 
-tick();
+setInterval(tick, 1000);
 /** Rendering Elements - end */
