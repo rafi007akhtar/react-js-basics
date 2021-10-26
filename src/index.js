@@ -140,5 +140,35 @@ ReactDOM.render(<Clock user='Rafi' />, document.querySelector('#state-and-lifecy
 /* === State and Lifecycle - end === */
 
 /* === Handling Events - begin === */
+class Toggle extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			isToggleOn: true
+		}
 
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleClick() {
+		// this is how they did in the docs (what is `prevState`?) also, I don't understand the syntax
+		// this.setState(prevState => ({
+		// 	isToggleOn: !prevState.isToggleOn
+		// }))
+
+		// this is how I've done it; not sure if it is best practise; but I understand this
+		this.setState({
+			isToggleOn: !this.state.isToggleOn
+		});
+	}
+
+	render() {
+		return (
+			<button onClick={this.handleClick}>
+				{ this.state.isToggleOn ? 'ON' : 'OFF' }
+			</button>
+		);
+	}
+}
+ReactDOM.render(<Toggle />, document.querySelector('#handling-events'));
 /* === Handling Events - end === */
