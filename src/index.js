@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-/** Hello World - begin */
+/* === Hello World - begin === */
 ReactDOM.render(
 	<h1>Hello, world!</h1>,
 	document.getElementById('root')
 );
-/** Hello World - end */
+/* === Hello World - end === */
 
-/** Introducing JSX - begin */
+/* === Introducing JSX - begin === */
 let element = <h1>Hello, world!</h1>;  // using JSX here
 
 function formatName(name) {
@@ -36,10 +36,9 @@ ReactDOM.render(
 	greetUser('Rafi'),
 	document.querySelector('#root')
 );
-/** Introducing JSX - end */
+/* === Introducing JSX - end === */
 
-/** Rendering Elements - begin */
-
+/* === Rendering Elements - begin === */
 /** Create an element that says hello world and shows the time, and render it to the DOM */
 function tick() {
 	const element = (
@@ -55,4 +54,39 @@ function tick() {
 }
 
 setInterval(tick, 1000);
-/** Rendering Elements - end */
+/* === Rendering Elements - end === */
+
+/* === Components and Props - begin === */
+function WelcomeH1(props) {
+	// props are read-only, so the following line would produce an error
+	// props.name = 'error: change in prop';
+
+	return (
+		<div>
+			<h1>Hello, {props.name}</h1>
+			{/* Components can be composed of other components, as below: */}
+			<WelcomeH2 message="This text will now go away, and the time will show" />
+		</div>
+	)
+	// here, `WelcomeH1` is a "function component"
+}
+
+class WelcomeH2 extends React.Component {
+	render() {
+		return <h2>BTW: {this.props.message}</h2>
+		// here, `WelcomeH2` is a "class component"
+	}
+}
+
+const root = document.querySelector('#root');
+
+// one way to render the component is this:
+// element = <WelcomeH1 name='Rafi'></WelcomeH1>;
+// ReactDOM.render(element, root);
+// another way is this:
+ReactDOM.render(<WelcomeH1 name='Rafi' />, root);
+
+// NOTE: here's a challenege to a general convention:
+// component names MUST always begin with a capital letter - EVEN when they're functions!
+// otherwise, React would mistake them as HTML tags
+/* === Components and Props - end === */
