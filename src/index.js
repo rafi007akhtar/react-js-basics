@@ -2,10 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+// Basic setup - begin
+const root = document.querySelector('#root');
+ReactDOM.render(
+	<div id="main-concepts">
+		<div id="hello-world"></div>
+		<div id="introducing-jsx"></div>
+		<div id="rendering-elements"></div>
+		<div id="components-and-props"></div>
+		<div id="state-and-lifecycle"></div>
+		<div id="handling-events"></div>
+	</div>,
+	root
+);
+// Basic setup - end
+
 /* === Hello World - begin === */
 ReactDOM.render(
 	<h1>Hello, world!</h1>,
-	document.getElementById('root')
+	document.getElementById('hello-world')
 );
 /* === Hello World - end === */
 
@@ -34,7 +49,7 @@ const name = 'Md Rafi Akhtar';
 element = <h1>Hello, {name}</h1>;
 ReactDOM.render(
 	greetUser('Rafi'),
-	document.querySelector('#root')
+	document.querySelector('#introducing-jsx')
 );
 /* === Introducing JSX - end === */
 
@@ -47,13 +62,13 @@ let tick = () => {
 			<h2>It is {new Date().toLocaleTimeString()} right now.</h2>
 		</div>
 	);
-	ReactDOM.render(element, document.querySelector('#root'));
+	ReactDOM.render(element, document.querySelector('#rendering-elements'));
 	// the above line will create the element and render it
 	// once the element is created, it cannot be changed - elements are immutable in React
 	// so to update it, the only way is to create a new element, and rerender it in the same location, like below.	
 }
 
-// setInterval(tick, 1000);  // commenting out, because calling via another way below
+setInterval(tick, 1000);
 /* === Rendering Elements - end === */
 
 /* === Components and Props - begin === */
@@ -65,7 +80,7 @@ function WelcomeH1(props) {
 		<div>
 			<h1>Hello, {props.name}</h1>
 			{/* Components can be composed of other components, as below: */}
-			<WelcomeH2 message="This text will now go away, and the time will show" />
+			<WelcomeH2 message="This text will show below the above heading" />
 		</div>
 	)
 	// here, `WelcomeH1` is a "function component"
@@ -78,13 +93,11 @@ class WelcomeH2 extends React.Component {
 	}
 }
 
-const root = document.querySelector('#root');
-
 // one way to render the component is this:
 // element = <WelcomeH1 name='Rafi'></WelcomeH1>;
 // ReactDOM.render(element, root);
 // another way is this:
-ReactDOM.render(<WelcomeH1 name='Rafi' />, root);
+ReactDOM.render(<WelcomeH1 name='Rafi' />, document.querySelector('#components-and-props'));
 
 // NOTE: here's a challenege to a general convention:
 // component names MUST always begin with a capital letter - EVEN when they're functions!
@@ -123,5 +136,9 @@ class Clock extends React.Component {
 		);
 	}
 }
-ReactDOM.render(<Clock />, root);
+ReactDOM.render(<Clock user='Rafi' />, document.querySelector('#state-and-lifecycle'));
 /* === State and Lifecycle - end === */
+
+/* === Handling Events - begin === */
+
+/* === Handling Events - end === */
