@@ -40,7 +40,7 @@ ReactDOM.render(
 
 /* === Rendering Elements - begin === */
 /** Create an element that says hello world and shows the time, and render it to the DOM */
-function tick() {
+let tick = () => {
 	const element = (
 		<div>
 			<h1>Hello, World!</h1>
@@ -53,7 +53,7 @@ function tick() {
 	// so to update it, the only way is to create a new element, and rerender it in the same location, like below.	
 }
 
-setInterval(tick, 1000);
+// setInterval(tick, 1000);  // commenting out, because calling via another way below
 /* === Rendering Elements - end === */
 
 /* === Components and Props - begin === */
@@ -90,3 +90,38 @@ ReactDOM.render(<WelcomeH1 name='Rafi' />, root);
 // component names MUST always begin with a capital letter - EVEN when they're functions!
 // otherwise, React would mistake them as HTML tags
 /* === Components and Props - end === */
+
+/* === State and Lifecycle - begin === */
+class Clock extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			date: new Date()
+		}
+	}
+
+	componentDidMount() {
+		this.timerID = setInterval(() => this.tick(), 1000);
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.timerID);
+	}
+
+	tick() {
+		this.setState({
+			date: new Date()
+		});
+	}
+
+	render() {
+		return (
+			<div>
+				<h1>Hello, {this.props.user}</h1>
+				<h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+			</div>
+		);
+	}
+}
+ReactDOM.render(<Clock />, root);
+/* === State and Lifecycle - end === */
